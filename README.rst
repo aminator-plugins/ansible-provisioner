@@ -31,6 +31,13 @@ TODO: Probably something like:
     aminate --install ansible
 
 
+Documentation
+-------------
+
+Its on the wiki:
+https://github.com/aminator-plugins/ansible/wiki
+
+
 The Easy Way
 ------------
 
@@ -43,12 +50,12 @@ About Answers for AWS
 
 This code was written by `Peter
 Sankauskas <https://twitter.com/pas256>`__, founder of `Answers for
-AWS <http://answersforaws.com/>`__ - a consulting company focused on
+AWS <http://answersforaws.com/>`__ - a company focused on
 helping business get the most out of AWS. If you are looking for help
 with AWS, please `contact us <http://answersforaws.com/contact/>`__.
 
 
-LICENSE
+License
 -------
 
 Copyright 2013 Answers for AWS LLC
