@@ -19,6 +19,12 @@ repository.
 
     $ sudo aminate -e ec2_ansible_linux -B ami-6637760f asgard-ubuntu.yml
 
+Sometimes it is useful to pass extra variables to your Ansible playbook. This
+can be done with the `--extra-vars` command line parameter. Example:
+
+::
+
+    $ aminate -e ec2_ansible_linux -B ami-fndat10n --extra-vars "local_war=$HOME/asgard.war" asgard-ubuntu.yml
 
 
 Installation
