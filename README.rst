@@ -41,7 +41,7 @@ Documentation
 -------------
 
 Its on the wiki:
-https://github.com/aminator-plugins/ansible/wiki
+https://github.com/aminator-plugins/ansible-provisioner/wiki
 
 
 The Easy Way
