@@ -14,16 +14,20 @@
 # limitations under the License.
 from setuptools import setup, find_packages
 setup(
-    name = "ansible-provisioner",
-    version = "0.1.0",
-    packages = ( 'aminatorplugins', ),
+    name = "aminatorplugins_ansible",
+    version = "0.2",
+    packages = find_packages(),
     namespace_packages = ( 'aminatorplugins', ),
 
-    # Project uses reStructuredText, so ensure that the docutils get
-    # installed or upgraded on the target machine
-    install_requires = [],
+    data_files = [
+        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.ansible.yml']),
+    ],
 
-    package_data = { },
+    entry_points = {
+       'aminator.plugins.provisioner': [
+           'ansible = aminatorplugins.provisioner.ansible:AnsibleProvisionerPlugin',
+       ],
+    },
 
     # metadata for upload to PyPI
     author = "Peter Sankauskas",
