@@ -25,9 +25,9 @@ import logging
 import os
 import shutil
 
+from aminator.plugins.provisioner.base import BaseProvisionerPlugin
 from aminator.config import conf_action
-from aminator.plugins.provisioner.linux import BaseProvisionerPlugin
-from aminator.util.linux import command, Chroot
+from aminator.util.linux import command
 
 __all__ = ('AnsibleProvisionerPlugin',)
 log = logging.getLogger(__name__)
@@ -49,40 +49,6 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
         ansible_config.add_argument('-ev', '--extra-vars', dest='extravars', help='A set of additional key=value variables to be used in the playbook',
                                  action=conf_action(self._config.plugins[self.full_name]))
 
-
-    def provision(self):
-        """ The main provisioning flow """
-        
-        context = self._config.context
-
-        log.debug('Pre chroot command block')
-        self._pre_chroot_block()
-
-        log.debug('Entering chroot at {0}'.format(self._mountpoint))
-
-        with Chroot(self._mountpoint):
-            log.debug('Inside chroot')
-
-            result = self._write_local_inventory()
-            if not result:
-                log.critical('Could not write local inventory file: {0.std_err}'.format(result.result))
-                return False
-
-            result = self._provision_package()
-            if not result.success:
-                log.critical('Installation of {0} failed: {1.std_err}'.format(context.package.arg, result.result))
-                return False
-            self._store_package_metadata()
-            
-            self._ansible_cleanup()
-
-        log.debug('Exited chroot')
-
-        log.debug('Post chroot command block')
-        self._post_chroot_block()
-
-        log.info('Provisioning succeeded!')
-        return True
     
     
     def _write_local_inventory(self):
@@ -136,6 +102,11 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
     def _provision_package(self):
         """ Sets up the command to get Ansible to run """
         
+        result = self._write_local_inventory()
+        if not result:
+            log.critical('Could not write local inventory file: {0.std_err}'.format(result.result))
+            return False
+            
         context = self._config.context
         config = self._config.plugins[self.full_name]
         extra_vars = config.get('extravars', '')
@@ -148,6 +119,8 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
     def _store_package_metadata(self):
         """ Store metadata about the AMI created """
         
+        self._ansible_cleanup()
+
         context = self._config.context
         config = self._config.plugins[self.full_name]
         metadata = {}
