@@ -26,14 +26,14 @@ import os
 import shutil
 
 from aminator.config import conf_action
-from aminator.plugins.provisioner.linux import BaseLinuxProvisionerPlugin
+from aminator.plugins.provisioner.linux import BaseProvisionerPlugin
 from aminator.util.linux import command, Chroot
 
 __all__ = ('AnsibleProvisionerPlugin',)
 log = logging.getLogger(__name__)
 
 
-class AnsibleProvisionerPlugin(BaseLinuxProvisionerPlugin):
+class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
     """
     AnsibleProvisionerPlugin takes the majority of its behavior from BaseLinuxProvisionerPlugin
     See BaseLinuxProvisionerPlugin for details
