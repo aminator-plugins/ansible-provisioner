@@ -85,7 +85,7 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
 
         config = self._config.plugins[self.full_name]
         playbooks_path_source = config.get('playbooks_path_source')
-        playbooks_path_dest = self._mountpoint + config.get('playbooks_path_dest')
+        playbooks_path_dest = self._distro._mountpoint + config.get('playbooks_path_dest')
         
         if not os.path.isdir(playbooks_path_source):
             log.critical("directory does not exist %s", playbooks_path_source)
