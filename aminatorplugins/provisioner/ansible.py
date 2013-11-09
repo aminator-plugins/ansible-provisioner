@@ -158,5 +158,5 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
 @command()
 def run_ansible_playbook(inventory, extra_vars, playbook_dir, playbook):
     path = playbook_dir + '/' + playbook
-    return 'ansible-playbook -c local -i {0} -e \\\'ami_build=True {1}\\\' {2}'.format(inventory, extra_vars, path)
+    return 'ansible-playbook -c local -i {0} -e \\\'ami=True {1}\\\' {2}'.format(inventory, extra_vars, path)
 

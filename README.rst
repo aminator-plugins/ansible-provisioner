@@ -30,11 +30,29 @@ can be done with the `--extra-vars` command line parameter. Example:
 Installation
 ------------
 
-TODO: Probably something like:
+First, install Aminator. Then install Ansible. Finally, to install the Ansible provisioner for Aminator:
 
 ::
 
-    aminate --install ansible
+    $ sudo aminator-plugin install ansible
+
+Then you will need to make add an environment that uses the Ansible provisioner to your `/etc/aminator/environments.yml` file. For example:
+
+::
+
+    ec2_ansible_linux:
+        cloud: ec2
+        distro: debian
+        provisioner: ansible
+        volume: linux
+        blockdevice: linux
+        finalizer: tagging_ebs
+
+Then you can use Aminator with Ansible:
+
+::
+
+    $ sudo aminate -e ec2_ansible_linux -B ami-2cac311c asgard-ubuntu.yml
 
 
 Documentation

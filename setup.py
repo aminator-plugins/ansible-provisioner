@@ -15,7 +15,7 @@
 from setuptools import setup, find_packages
 setup(
     name = "aminatorplugins_ansible",
-    version = "0.3",
+    version = "0.4",
     packages = find_packages(),
     namespace_packages = ( 'aminatorplugins', 'aminatorplugins.provisioner'),
 
