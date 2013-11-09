@@ -20,7 +20,7 @@ setup(
     namespace_packages = ( 'aminatorplugins', 'aminatorplugins.provisioner'),
 
     data_files = [
-        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.ansible.yml']),
+        ('/etc/aminator/plugins', ['default_conf/aminator.plugins.provisioner.ansible.yml']),
     ],
 
     entry_points = {
