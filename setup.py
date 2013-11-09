@@ -17,7 +17,7 @@ setup(
     name = "aminatorplugins_ansible",
     version = "0.4",
     packages = find_packages(),
-    namespace_packages = ( 'aminatorplugins', ),
+    namespace_packages = ( 'aminatorplugins', 'aminatorplugins.provisioner'),
 
     data_files = [
         ('/etc/aminator/plugins', ['default_conf/aminator.plugins.provisioner.ansible.yml']),
