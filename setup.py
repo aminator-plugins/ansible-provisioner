@@ -15,12 +15,12 @@
 from setuptools import setup, find_packages
 setup(
     name = "aminatorplugins_ansible",
-    version = "0.3",
+    version = "0.4",
     packages = find_packages(),
     namespace_packages = ( 'aminatorplugins', ),
 
     data_files = [
-        ('/etc/aminator/plugins', ['default_conf/aminatorplugins.provisioner.ansible.yml']),
+        ('/etc/aminator/plugins', ['default_conf/aminator.plugins.provisioner.ansible.yml']),
     ],
 
     entry_points = {
