@@ -49,6 +49,8 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
         ansible_config.add_argument('-ev', '--extra-vars', dest='extravars', help='A set of additional key=value variables to be used in the playbook',
                                  action=conf_action(self._config.plugins[self.full_name]))
 
+        ansible_config.add_argument('--app-version', dest='appversion', help='Manually set the application version number so it is tagging in the AMI',
+                                 action=conf_action(self._config.plugins[self.full_name]))
     
     
     def _write_local_inventory(self):
@@ -125,7 +127,7 @@ class AnsibleProvisionerPlugin(BaseProvisionerPlugin):
         config = self._config.plugins[self.full_name]
         metadata = {}
         metadata['name'] = context.package.arg
-        metadata['version'] = ''
+        metadata['version'] = config.get('appversion', '')
         metadata['release'] = ''
         metadata['extra_vars'] = config.get('extravars', '')
         context.package.attributes = metadata
